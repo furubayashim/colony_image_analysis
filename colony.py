@@ -7,7 +7,7 @@ from PIL import Image
 file_path = 'D.xlsx'
 image_path = 'D.jpg'
 
-df = pd.read_excel(file)
+df = pd.read_excel(file_path)
 im = Image.open(image_path)
 
 def cropColony(row,im):

@@ -9,9 +9,8 @@ image_path = 'D.jpg'
 
 df = pd.read_excel(file)
 im = Image.open(image_path)
-pix = im.load()
 
-def cropColony(row):
+def cropColony(row,im):
     '''Crop the bottom half-ish of colony
     '''
     left = row['X'] - row['Width']/4
@@ -34,7 +33,7 @@ def averageRGB(image):
     # get average
     return np.round(npim.mean(axis=0),2)
 
-df['CropIm'] = df.apply(cropColony,axis=1)
+df['CropIm'] = df.apply(lambda x: cropColony(x,im),axis=1)
 df['average_RGB'] = df.apply(lambda x: averageRGB(x['CropIm']),axis=1)
 
 RGB_array = np.stack(df['average_RGB'].values,axis=0)

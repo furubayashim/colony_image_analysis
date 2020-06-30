@@ -26,13 +26,13 @@ def cropColony(row):
 def averageRGB(image):
     '''Calculate average RGB (each) of image
     '''
-    im = np.array(image)
+    npim = np.array(image)
     # get shape
-    w,h,d = im.shape
+    w,h,d = npim.shape
     # change shape
-    im.shape = (w*h,d)
+    npim.shape = (w*h,d)
     # get average
-    return np.round(im.mean(axis=0),2)
+    return np.round(npim.mean(axis=0),2)
 
 df['CropIm'] = df.apply(cropColony,axis=1)
 df['average_RGB'] = df.apply(lambda x: averageRGB(x['CropIm']),axis=1)

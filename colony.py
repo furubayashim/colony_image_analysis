@@ -34,6 +34,7 @@ def averageRGB(image):
     return np.round(npim.mean(axis=0),2)
 
 df['CropIm'] = df.apply(lambda x: cropColony(x,im),axis=1)
+df['CropImSize'] = [x.size[0]*x.size[1] for x in df['CropIm']]
 df['average_RGB'] = [averageRGB(x) for x in df['CropIm']]
 
 RGB_array = np.stack(df['average_RGB'].values,axis=0)

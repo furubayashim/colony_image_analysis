@@ -34,7 +34,7 @@ def averageRGB(image):
     return np.round(npim.mean(axis=0),2)
 
 df['CropIm'] = df.apply(lambda x: cropColony(x,im),axis=1)
-df['average_RGB'] = df.apply(lambda x: averageRGB(x['CropIm']),axis=1)
+df['average_RGB'] = [averageRGB(x) for x in df['CropIm']]
 
 RGB_array = np.stack(df['average_RGB'].values,axis=0)
 pd.DataFrame(RGB_array,columns=['R','G','B']).to_excel('average_RGB.xlsx')
